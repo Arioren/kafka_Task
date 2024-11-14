@@ -1,4 +1,4 @@
-from app.repository.all_messages import get_person_by_email, get_most_common_word
+from app.repository.all_messages import get_person_by_email, get_most_common_word_by_email
 
 
 #How can the full content of an object be extracted
@@ -10,7 +10,7 @@ def full_content(email: str):
 
 # How can you get the most common word in the suspicious messages by email?
 def most_common_word(email: str):
-    res = get_most_common_word(email)
+    res = get_most_common_word_by_email(email)
     return res
 
 

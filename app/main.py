@@ -7,8 +7,8 @@ from app.settings.admin import init_topics
 app = Flask(__name__)
 
 if __name__ == '__main__':
-    init_db()
-    init_topics()
-    init_tables()
+    # init_db()
+    # init_topics()
+    # init_tables()
     app.register_blueprint(messages_blueprint, url_prefix="/api")
     app.run()
