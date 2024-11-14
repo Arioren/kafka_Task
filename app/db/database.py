@@ -2,6 +2,7 @@ from pymongo import MongoClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from app.db.models import Base
 from app.settings.mongo_config import DB_URL
 from app.settings.sql_config import SQL_DB_URL
 
@@ -18,4 +19,9 @@ def init_db():
 
 engine = create_engine(SQL_DB_URL)
 session_maker = sessionmaker(bind=engine)
+
+
+def init_tables():
+    Base.metadata.drop_all(engine)
+    Base.metadata.create_all(engine)
 

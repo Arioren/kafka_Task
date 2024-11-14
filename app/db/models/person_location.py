@@ -1,5 +1,6 @@
 from app.db.models import Base
 import sqlalchemy as sa
+import sqlalchemy.orm as orm
 
 class Location(Base):
     __tablename__ = 'location'
@@ -9,5 +10,5 @@ class Location(Base):
     city = sa.Column(sa.String)
     country = sa.Column(sa.String)
 
-    person = sa.relationship('Person', back_populates='location')
+    person = orm.relationship('Person', back_populates='location')
 

@@ -1,5 +1,6 @@
 from app.db.models import Base
 import sqlalchemy as sa
+import sqlalchemy.orm as orm
 
 class Hostage(Base):
     __tablename__ = 'suspicious_hostage_content'
@@ -7,4 +8,4 @@ class Hostage(Base):
     sentence = sa.Column(sa.String)
     person_id = sa.Column(sa.Integer, sa.ForeignKey('person.id'))
 
-    person = sa.relationship('Person', back_populates='sentences_hostage')
+    person = orm.relationship('Person', back_populates='sentences_hostage')

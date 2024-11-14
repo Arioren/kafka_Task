@@ -1,6 +1,7 @@
 import json
 
 from kafka import KafkaConsumer
+from app.repository.sql_repo import insert_email_into_sql
 
 
 def consume_emails_by_topic(topic: str):
@@ -11,5 +12,6 @@ def consume_emails_by_topic(topic: str):
         auto_offset_reset='earliest'
     )
     for message in consumer:
-        # member_collection.insert_one(message.value)
+        if topic == 'messages.hostage' or topic == 'messages.explosive':
+            insert_email_into_sql(message.value, topic)
         print(f"Received: {message.key}: {message.value} \n from topic: {topic}")
