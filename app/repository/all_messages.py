@@ -4,6 +4,8 @@ from app.services.producer.produce_emails import produce_email
 
 def new_email(body: dict):
     all_emails.insert_one(body)
+    body['_id'] = str(body['_id'])
+
     produce_email('all', body)
 
     topic = type_of_email(body)
