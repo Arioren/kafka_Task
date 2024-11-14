@@ -3,7 +3,7 @@ from app.services.producer.produce_emails import produce_email
 
 
 def new_email(body: dict):
-    res = all_emails.insert_one(body)
+    all_emails.insert_one(body)
     produce_email('all', body)
 
     type = type_of_email(body)
@@ -11,17 +11,19 @@ def new_email(body: dict):
         produce_email(type, body)
     if type == 'explosive':
         produce_email(type, body)
-    return res
+    return body
 
 
 
 def type_of_email(body: dict)->str:
     for i, sentence in enumerate(body['sentences']):
         if 'hostage' in sentence:
-            body['sentences'] = [sentence].append(body['sentences'][i + 1:])
+            new_list = [sentence] + list(body['sentences'][:i]) + list(body['sentences'][i + 1:])
+            body['sentences'] = new_list
             return 'hostage'
         elif 'explosive' in sentence:
-            body['sentences'] = [sentence].append(body['sentences'][i + 1:])
+            new_list = [sentence] + list(body['sentences'][:i]) + list(body['sentences'][i + 1:])
+            body['sentences'] = new_list
             return 'explosive'
     return 'all'
 

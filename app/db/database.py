@@ -8,3 +8,7 @@ db = client['emails']
 all_emails = db['all_emails']
 # ordered_collection = db['ordered']
 
+
+def init_db():
+    all_emails.drop()
+
