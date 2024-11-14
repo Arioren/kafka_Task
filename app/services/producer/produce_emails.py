@@ -12,4 +12,4 @@ def produce_email(topic: str, email: dict):
         key=email['email'].encode('utf-8')
     )
     producer.flush()
-    print("Message sent successfully: ", email)
+    print(f"Message sent successfully: {email}\n from topic:{topic}")
