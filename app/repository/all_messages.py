@@ -6,11 +6,11 @@ def new_email(body: dict):
     all_emails.insert_one(body)
     produce_email('all', body)
 
-    type = type_of_email(body)
-    if type == 'hostage':
-        produce_email(type, body)
-    if type == 'explosive':
-        produce_email(type, body)
+    topic = type_of_email(body)
+    if topic == 'hostage':
+        produce_email(topic, body)
+    if topic == 'explosive':
+        produce_email(topic, body)
     return body
 
 
